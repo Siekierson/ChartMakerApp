@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/ChartMakerApp/static/css/main.e8c6fd7c.chunk.css",
+    "main.js": "/ChartMakerApp/static/js/main.375ef7cd.chunk.js",
+    "main.js.map": "/ChartMakerApp/static/js/main.375ef7cd.chunk.js.map",
+    "runtime-main.js": "/ChartMakerApp/static/js/runtime-main.f300b625.js",
+    "runtime-main.js.map": "/ChartMakerApp/static/js/runtime-main.f300b625.js.map",
+    "static/js/2.71dcd923.chunk.js": "/ChartMakerApp/static/js/2.71dcd923.chunk.js",
+    "static/js/2.71dcd923.chunk.js.map": "/ChartMakerApp/static/js/2.71dcd923.chunk.js.map",
+    "index.html": "/ChartMakerApp/index.html",
+    "precache-manifest.136135eb106a7852ccba0655818d3118.js": "/ChartMakerApp/precache-manifest.136135eb106a7852ccba0655818d3118.js",
+    "service-worker.js": "/ChartMakerApp/service-worker.js",
+    "static/css/main.e8c6fd7c.chunk.css.map": "/ChartMakerApp/static/css/main.e8c6fd7c.chunk.css.map",
+    "static/js/2.71dcd923.chunk.js.LICENSE.txt": "/ChartMakerApp/static/js/2.71dcd923.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f300b625.js",
+    "static/js/2.71dcd923.chunk.js",
+    "static/css/main.e8c6fd7c.chunk.css",
+    "static/js/main.375ef7cd.chunk.js"
+  ]
+}
