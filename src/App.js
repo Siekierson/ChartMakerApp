@@ -2,17 +2,31 @@ import React from 'react';
 import Canvas from './components/organisms/Canvas'
 import ReactDOM,{ unmountComponentAtNode } from 'react-dom';
 import Form from './components/organisms/Form';
-import styles from './App.scss'
+import SelectWrapper from './components/molecues/SelectWrapper'
+import './App.css'
 import styled from 'styled-components';
 import { SwatchesPicker } from 'react-color'
 const Header= styled.header`
 text-align:center;
-font-size:6rem;
+font-size:9rem;
 font-weight:bold;
 `
 const MainWrapper = styled.div`
 padding:10px 150px;
 text-align:center;
+`
+const ChartEditSection = styled.div`
+width:40%;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+`
+const FlexWrapper= styled.div`
+height: 100%;
+width:100vw;
+display:flex;
+flex-direction:row;
+justify-content: space-between;
 `
 class App extends React.Component {
     state={
@@ -42,26 +56,29 @@ class App extends React.Component {
       unmountComponentAtNode(document.getElementById('app'))
       while(this.rChart.firstChild){document.body.removeChild(this.rChart.firstChild);}
       ReactDOM.render(<Canvas data={this.state.data} chartType={this.state.chartType} color={this.state.color}/>,document.getElementById('app'));
-      
     }
   
     render() {
       const switchAtributes=['line','bar','radar','pie']
-      const {data,chartType,color}= this.state
+      const {data}= this.state
         return (
             <MainWrapper>
               <Header>ChartMaker</Header>
+              <FlexWrapper>
+              <ChartEditSection>
+                <SelectWrapper atributes={switchAtributes} handleSelect={this.handleSelect}/>
+                <SwatchesPicker onChange={(e)=>this.setState({color:e.hex})}/>
+                <button onClick={this.newChart}>Make chart</button>
+                <button onClick={this.removeData}>Remove data</button>
+              </ChartEditSection>
               <Form 
-                  atributes={switchAtributes}
                   handleSubmit={this.handleSubmit}
                   handleInput={this.handleInput}
-                  handleSelect={this.handleSelect}
+                  data={data}
               />
-              <SwatchesPicker onChange={(e)=>this.setState({color:e.hex})}/>
-              <button onClick={this.newChart}>Make chart</button>
-              <button onClick={this.removeData}>Remove data</button>
+              </FlexWrapper>
               <div id='app' ref={this.rChart}>
-              </div>
+                </div>
             </MainWrapper>
         )
     } 

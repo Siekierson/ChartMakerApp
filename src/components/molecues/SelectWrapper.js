@@ -4,9 +4,9 @@ import DefaultOption from '../atoms/DefaultOption'
 const InnerSelect = styled.select`
 padding:10px;
 `
-const SelectWrapper=({atributes,Switch})=>(
+const SelectWrapper=({atributes,handleSelect})=>(
     <>
-    <InnerSelect onChange={Switch}>
+    <InnerSelect onChange={handleSelect}>
         {atributes.map(item=>(
             <DefaultOption key={item} value={item} inner={item}/>
         ))}
