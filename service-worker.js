@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/ChartMakerApp/precache-manifest.136135eb106a7852ccba0655818d3118.js"
+  "/ChartMakerApp/precache-manifest.e29121715cf8e609f54d4d23e087e696.js"
 );
 
 self.addEventListener('message', (event) => {
