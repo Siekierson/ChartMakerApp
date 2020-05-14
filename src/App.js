@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import { SwatchesPicker } from 'react-color'
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import Navbar from './components/molecues/Navbar';
+import CovidSection from './components/organisms/CovidSection'
 const Header= styled.header`
 text-align:center;
 font-size:9rem;
@@ -37,26 +38,13 @@ class App extends React.Component {
       chartType:'line',
       mess:'',
       color:'blue',
-      api:[]
     }
     rChart = React.createRef();
     handleSubmit=(e,prevState)=>{
       e.preventDefault()
       this.setState({data:[...this.state.data,this.state.mess]})
     }
-    fetchExam=async()=>{
-      try {
-          const response = await fetch('https://api.covid19api.com/dayone/country/poland');
-          const exam = await response.json();
-          const table=[];
-          for(let i=0;i<exam.length;i++) table.push(String(exam[i].Confirmed))
-          this.setState({api:table})
-      } catch (error) {
-          console.error(error);
-      }}
-    componentDidMount(){
-      this.fetchExam()
-    }
+    
     handleInput=(e)=>{
       this.setState({mess:e.target.value})
     }
@@ -85,7 +73,7 @@ class App extends React.Component {
                 <Header>ChartMaker</Header>
                 <Switch>
                   <Route exact path='/'>
-                        <FlexWrapper>
+                      <FlexWrapper>
                       <ChartEditSection>
                         <SelectWrapper atributes={switchAtributes} handleSelect={this.handleSelect}/>
                         <SwatchesPicker onChange={(e)=>this.setState({color:e.hex})}/>
@@ -102,13 +90,8 @@ class App extends React.Component {
                         </div>
                   </Route>
                 <Route path='/covid'>
-                    <h1>Covid api</h1>
-                    <h2>Poland</h2>
-                  <div>
-                  <Canvas data={this.state.api} chartType='line' color={this.state.color}/>
-                  </div>
+                    <CovidSection/>
                 </Route>
-                  
               </Switch>
               </MainWrapper>
             </BrowserRouter>

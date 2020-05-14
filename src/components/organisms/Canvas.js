@@ -22,7 +22,7 @@ const Canvas=({data,chartType,color})=>{
     };
     useEffect(()=>{
     const myChartRef =chartRef.current.getContext("2d");
-    myChartRef.canvas.height = 100;
+    myChartRef.canvas.maxheight =600;
         new Chart(myChartRef,createDate) 
 })
     return(
