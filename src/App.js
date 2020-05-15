@@ -60,7 +60,12 @@ class App extends React.Component {
       e.preventDefault()
       unmountComponentAtNode(document.getElementById('app'))
       while(this.rChart.firstChild){document.body.removeChild(this.rChart.firstChild);}
-      ReactDOM.render(<Canvas data={this.state.data} chartType={this.state.chartType} color={this.state.color}/>,document.getElementById('app'));
+      ReactDOM.render(<Canvas data={this.state.data} chartType={this.state.chartType} color={this.state.color} datas={[{
+        label: "Chart",
+        data: this.state.data,
+        borderColor: `${this.state.color}`,
+        fill: false,
+    }]}/>,document.getElementById('app'));
     }
   
     render() {
@@ -90,7 +95,7 @@ class App extends React.Component {
                         </div>
                   </Route>
                 <Route path='/covid'>
-                    <CovidSection/>
+                    <CovidSection select={this.handleSelect}/>
                 </Route>
               </Switch>
               </MainWrapper>
