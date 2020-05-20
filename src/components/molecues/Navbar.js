@@ -5,7 +5,9 @@ import {NavLink} from 'react-router-dom';
 const Navigation=styled.nav`
 margin:0;
 padding:10px;
-width:100vw;
+position:fixed;
+z-index:999;
+width:100%;
 background-color:#222;
 text-align:center;
 `

@@ -5,7 +5,7 @@ const Canvas=({data,chartType,color,datas,isName})=>{
     const chartRef = useRef(null)
     useEffect(()=>{
     const myChartRef =chartRef.current.getContext("2d");
-    myChartRef.canvas.maxheight =600;
+    // myChartRef.canvas.maxheight =600;
         new Chart(myChartRef,{
             type: chartType,
             data: {
@@ -16,7 +16,7 @@ const Canvas=({data,chartType,color,datas,isName})=>{
             },
             
             options: {
-              
+                responsive:true,
             }
         }) 
 })

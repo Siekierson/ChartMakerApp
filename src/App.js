@@ -13,23 +13,34 @@ const Header= styled.header`
 text-align:center;
 font-size:9rem;
 font-weight:bold;
+width:100%;
+@media(max-width:750px){
+  font-size:5rem;
+}
 `
 const MainWrapper = styled.div`
-padding:10px 150px;
+padding:100px 20vw;
 text-align:center;
+@media(max-width:750px){
+  padding:80px 2vw;
+}
 `
 const ChartEditSection = styled.div`
-width:40%;
+width:300px;
 display:flex;
 flex-direction:column;
 justify-content:space-between;
 `
 const FlexWrapper= styled.div`
 height: 100%;
-width:100vw;
+width:60vw;
+@media(max-width:750px){
+  width:96vw;
+}
 display:flex;
+flex-wrap:wrap;
 flex-direction:row;
-justify-content: space-between;
+justify-content: space-around;
 `
 
 class App extends React.Component {
@@ -80,8 +91,8 @@ class App extends React.Component {
                   <Route exact path='/'>
                       <FlexWrapper>
                       <ChartEditSection>
+                        <SwatchesPicker width='300px' onChange={(e)=>this.setState({color:e.hex})}/>
                         <SelectWrapper atributes={switchAtributes} handleSelect={this.handleSelect}/>
-                        <SwatchesPicker onChange={(e)=>this.setState({color:e.hex})}/>
                         <button onClick={this.newChart}>Make chart</button>
                         <button onClick={this.removeData}>Remove data</button>
                       </ChartEditSection>

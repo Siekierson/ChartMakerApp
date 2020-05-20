@@ -1,6 +1,15 @@
 import React from 'react'
 import Canvas from './Canvas';
-
+import styled from 'styled-components';
+const CanvWrapper= styled.div`
+margin-top:20px;
+font-size:1.8rem;
+>h2{
+    margin-top:20px;
+    margin-bottom:10px;
+    font-size:2.2rem;
+}
+`
 class CovidSection extends React.Component{
     state={
         api:[],
@@ -12,7 +21,7 @@ class CovidSection extends React.Component{
             const response = await fetch(`https://api.covid19api.com/total/country/poland`);
             const exam = await response.json();
             const table=[];
-            for(let i=0;i<exam.length;i++) table.push(exam[i])
+            for(let i=0;i<exam.length;i++) exam[i].Active&&table.push(exam[i])
             this.setState({api:table})
         } catch (error) {
             console.error(error);
@@ -27,9 +36,10 @@ class CovidSection extends React.Component{
                     name:resjson.Countries[i].Country,
                     confirmed:String(resjson.Countries[i].TotalConfirmed)
             })}
-            const topValues = bar.sort((a,b) => b.confirmed-a.confirmed).slice(0,20).reverse();
+            const responsiveTop=window.innerWidth>750?20:10
+            const topValues = bar.sort((a,b) => b.confirmed-a.confirmed).slice(0,responsiveTop).reverse();
             this.setState({topten:topValues})
-            this.setState({bar:bar})
+            this.setState({bar})
         } catch (error) {
             console.error(error);
         }
@@ -76,11 +86,15 @@ class CovidSection extends React.Component{
         })
     return(
         <>
+            <CanvWrapper>
             <h1>Covid api</h1>
-            <h2>Poland</h2>
-            <Canvas data={confirmed} chartType='line' color='blue'datas={polDataset}/>
-            <h2>Global top 10</h2>
-            <Canvas data={topten.map(item=>item.name)} isName chartType='bar' color='blue'datas={tp}/>
+                <h2>Poland</h2>
+                <Canvas data={confirmed} chartType='line' color='blue'datas={polDataset}/>
+            {/* </CanvWrapper>
+            <CanvWrapper> */}
+                <h2>Global Top{window.innerWidth>750?'20':'10'}</h2>
+                <Canvas data={topten.map(item=>item.name)} isName chartType='bar' color='blue'datas={tp}/>
+            </CanvWrapper>
         </>
     )}
     }
